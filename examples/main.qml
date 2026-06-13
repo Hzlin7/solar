@@ -8,8 +8,8 @@ ApplicationWindow {
 
     property int margins: isFullScreen() ? 0 : 8
 
-    width: 1200
-    height: 800
+    width: 920
+    height: 560
     visible: true
     title: "Solar - QML Component Library"
     flags: Qt.FramelessWindowHint

@@ -24,10 +24,9 @@ qt6_add_qml_module(Solar
 # Fix qmldir: add singleton keyword for singleton types
 set(QMLDIR "${CMAKE_BINARY_DIR}/Solar/qmldir")
 add_custom_command(TARGET Solar POST_BUILD
-    COMMAND sed -i "s/^SolarTheme /singleton Theme /" "${QMLDIR}"
-    COMMAND sed -i "s/^SolarIcons /singleton Icons /" "${QMLDIR}"
-    # Remove prefer line so engine searches import paths (disk) not just qrc
-    COMMAND sed -i "/^prefer /d" "${QMLDIR}"
+    COMMAND ${CMAKE_COMMAND}
+        -DQMLDIR="${QMLDIR}"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/fix_qmldir.cmake"
     # Copy font to output so FontLoader can find it via Qt.resolvedUrl
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/Solar/assets"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different

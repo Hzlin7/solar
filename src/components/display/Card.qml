@@ -8,10 +8,9 @@ Solar.ShadowRectangle {
     // shadows: "always" | "hovered" | "none"
     property string shadows: "always"
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        hoverEnabled: control.shadows === "hovered"
+    HoverHandler {
+        id: hoverHandler
+        enabled: control.shadows === "hovered"
     }
 
     state: shadows
@@ -23,7 +22,7 @@ Solar.ShadowRectangle {
         },
         State {
             name: "hovered"
-            PropertyChanges { target: control; shadow: mouseArea.containsMouse }
+            PropertyChanges { target: control; shadow: hoverHandler.hovered }
         },
         State {
             name: "none"

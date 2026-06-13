@@ -27,8 +27,13 @@ Shape {
     readonly property real _cBR: Math.min(_brr, width / 2, height / 2)
 
     antialiasing: true
-    preferredRendererType: Shape.CurveRenderer
     containsMode: Shape.BoundingRectContains
+
+    Component.onCompleted: {
+        try {
+            preferredRendererType = Shape.CurveRenderer
+        } catch (e) {}
+    }
 
     ShapePath {
         id: shapePath
