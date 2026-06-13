@@ -1,0 +1,22 @@
+module Solar
+
+#
+singleton Theme 1.0 SolarTheme.qml
+singleton Icons 1.0 SolarIcons.qml
+
+# Basic components
+Clip 1.0 components/basic/Clip.qml
+Separator 1.0 components/basic/Separator.qml
+FocusRectangle 1.0 components/basic/FocusRectangle.qml
+HoverHandler 1.0 components/basic/HoverHandler.qml
+FontIcon 1.0 components/basic/FontIcon.qml
+Button 1.0 components/basic/Button.qml
+IconButton 1.0 components/basic/IconButton.qml
+ShadowRectangle 1.0 components/basic/ShadowRectangle.qml
+ShapeRectangle 1.0 components/basic/ShapeRectangle.qml
+
+# Input components
+ToggleSwitch 1.0 components/input/ToggleSwitch.qml
+
+# Display components
+Card 1.0 components/display/Card.qml
