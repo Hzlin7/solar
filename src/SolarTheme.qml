@@ -356,28 +356,20 @@ QtObject {
     property real border: 1.5 * zoom
     property real radius: isRounded ? 4 * zoom : 0
 
-    // Font
-    property var body: {
-        var f = Qt.font({
+    property QtObject font: QtObject {
+        readonly property var body: Qt.font({
             family: "Segoe UI, Helvetica Neue, Helvetica, Arial, sans-serif",
             pixelSize: 13 * zoom
         })
-        return f
-    }
-    property var title: {
-        var f = Qt.font({
+        readonly property var title: Qt.font({
             family: "Segoe UI, Helvetica Neue, Helvetica, Arial, sans-serif",
             pixelSize: 15 * zoom,
             weight: Font.SemiBold
         })
-        return f
-    }
-    property var caption: {
-        var f = Qt.font({
+        readonly property var caption: Qt.font({
             family: "Segoe UI, Helvetica Neue, Helvetica, Arial, sans-serif",
             pixelSize: 10 * zoom
         })
-        return f
     }
 
     onThemeChanged: {

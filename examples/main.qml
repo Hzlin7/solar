@@ -208,7 +208,7 @@ ApplicationWindow {
                         anchors.left: parent.left
                         anchors.leftMargin: 20 * Solar.Theme.zoom
                         color: delegateItem.ListView.isCurrentItem ? Solar.Theme.colors.primary : Solar.Theme.colors.text0
-                        font: Solar.Theme.body
+                        font: Solar.Theme.font.body
                     }
 
                 }

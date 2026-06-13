@@ -15,7 +15,7 @@ Flickable {
 
         Text {
             text: qsTr("Toggle Switch")
-            font: Solar.Theme.title
+            font: Solar.Theme.font.title
             color: Solar.Theme.colors.text1
         }
 
@@ -59,7 +59,7 @@ Flickable {
                     Text {
                         text: qsTr("Disable")
                         anchors.verticalCenter: parent.verticalCenter
-                        font: Solar.Theme.body
+                        font: Solar.Theme.font.body
                         color: Solar.Theme.colors.text2
                     }
 
@@ -110,7 +110,7 @@ Flickable {
                     Text {
                         text: qsTr("Disable")
                         anchors.verticalCenter: parent.verticalCenter
-                        font: Solar.Theme.body
+                        font: Solar.Theme.font.body
                         color: Solar.Theme.colors.text2
                     }
 
@@ -165,7 +165,7 @@ Flickable {
                     Text {
                         text: qsTr("Disable")
                         anchors.verticalCenter: parent.verticalCenter
-                        font: Solar.Theme.body
+                        font: Solar.Theme.font.body
                         color: Solar.Theme.colors.text2
                     }
 

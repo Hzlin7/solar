@@ -132,7 +132,7 @@ Button {
         Text {
             text: control.checked ? control.onText : control.offText
             color: control.enabled ? Solar.Theme.colors.text1 : Solar.Theme.colors.disabledText
-            font: Solar.Theme.body
+            font: Solar.Theme.font.body
             Layout.alignment: Qt.AlignVCenter
             visible: control.showText && text !== ""
         }
