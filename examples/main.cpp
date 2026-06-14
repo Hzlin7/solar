@@ -6,7 +6,7 @@
 int main(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
     QQuickStyle::setStyle("Basic");
-    app.setWindowIcon(QIcon(SOLAR_EXAMPLE_DIR "/resources/image/sun.svg"));
+    app.setWindowIcon(QIcon(SOLAR_EXAMPLE_DIR "/resources/image/solar.svg"));
 
     QQmlApplicationEngine engine;
     // Add build dir to import path so solar module is found
