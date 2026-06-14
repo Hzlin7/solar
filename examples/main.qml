@@ -12,7 +12,7 @@ ApplicationWindow {
     height: 560
     visible: true
     title: "Solar - QML Component Library"
-    flags: Qt.FramelessWindowHint
+    flags: Qt.Window | Qt.FramelessWindowHint
     color: Qt.rgba(0, 0, 0, 0)
 
     // Register custom themes at startup
@@ -25,7 +25,7 @@ ApplicationWindow {
         anchors.fill: parent
         anchors.margins: window.margins
         border.width: 0
-        color: Solar.Theme.colors.bg0
+        color: Solar.Theme.colors.bg1
         radius: isFullScreen() ? 0 : 8 * Solar.Theme.zoom
     }
 
@@ -103,6 +103,22 @@ ApplicationWindow {
                 anchors.rightMargin: 5 * Solar.Theme.zoom
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 10 * Solar.Theme.zoom
+
+                Solar.Segmented {
+                    width: implicitWidth
+                    style: Solar.Segmented.Style.Rounded
+                    height: 26 * Solar.Theme.zoom
+                    anchors.verticalCenter: parent.verticalCenter
+                    currentIndex: Solar.Theme.isDark ? 1 : 0
+                    onCurrentIndexChanged: Solar.Theme.toggleDark()
+
+                    Solar.SegmentedItem {
+                        icon: Qt.resolvedUrl("resources/image/sun.svg")
+                    }
+                    Solar.SegmentedItem {
+                        icon: Qt.resolvedUrl("resources/image/moon.svg")
+                    }
+                }
 
                 Solar.IconButton {
                     icon.name: "minus"

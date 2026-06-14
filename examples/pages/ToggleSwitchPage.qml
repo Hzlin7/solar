@@ -23,6 +23,7 @@ Flickable {
             Layout.fillWidth: true
             height: 80 * Solar.Theme.zoom
             radius: Solar.Theme.radius
+            color: Solar.Theme.colors.bg1
             border.width: 0
 
             RowLayout {
@@ -76,6 +77,7 @@ Flickable {
             Layout.fillWidth: true
             height: 80 * Solar.Theme.zoom
             radius: Solar.Theme.radius
+            color: Solar.Theme.colors.bg1
             border.width: 0
 
             RowLayout {
@@ -127,6 +129,7 @@ Flickable {
             Layout.fillWidth: true
             height: 80 * Solar.Theme.zoom
             radius: Solar.Theme.radius
+            color: Solar.Theme.colors.bg1
             border.width: 0
 
             RowLayout {

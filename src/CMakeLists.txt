@@ -15,7 +15,10 @@ qt6_add_qml_module(Solar
         components/basic/FocusRectangle.qml
         components/basic/HoverHandler.qml
         components/basic/ShapeRectangle.qml
+        components/basic/ColoredSvg.qml
+        components/basic/SegmentedItem.qml
         components/input/ToggleSwitch.qml
+        components/input/Segmented.qml
         components/display/Card.qml
     RESOURCES
         assets/iconfont.ttf

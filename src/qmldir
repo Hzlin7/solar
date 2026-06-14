@@ -14,9 +14,12 @@ Button 1.0 components/basic/Button.qml
 IconButton 1.0 components/basic/IconButton.qml
 ShadowRectangle 1.0 components/basic/ShadowRectangle.qml
 ShapeRectangle 1.0 components/basic/ShapeRectangle.qml
+SegmentedItem 1.0 components/input/SegmentedItem.qml
+ColoredSvg 1.0 components/basic/ColoredSvg.qml
 
 # Input components
 ToggleSwitch 1.0 components/input/ToggleSwitch.qml
+Segmented 1.0 components/input/Segmented.qml
 
 # Display components
 Card 1.0 components/display/Card.qml
