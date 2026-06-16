@@ -20,7 +20,6 @@ Button {
     property color bgPressed: Solar.Theme.colors.fill2
     property color bgDisabled: Solar.Theme.colors.disabledBg
     property color contentTextColor: Solar.Theme.colors.text0
-    property color contentHighlightTextColor: Solar.Theme.colors.white
     property color contentIconColor: Solar.Theme.colors.text1
 
     property real radius: Solar.Theme.radius
@@ -32,16 +31,18 @@ Button {
     font: Solar.Theme.font.body
     focusPolicy: Qt.TabFocus
 
-    icon.color: enabled
-                ? style === 1 ? contentHighlightTextColor : contentIconColor
-                : Solar.Theme.colors.disabledText
+    icon.color: enabled ? contentIconColor : Solar.Theme.colors.disabledText
 
     state: {
         switch (style) {
-            case 1: return "Solid";
-            case 2: return "Transparent";
-            case 3: return "Outline";
-            default: return "";
+        case 1:
+            return "Solid";
+        case 2:
+            return "Transparent";
+        case 3:
+            return "Outline";
+        default:
+            return "";
         }
     }
 
@@ -91,41 +92,42 @@ Button {
                 return control.bgHovered;
             return control.bgNormal;
         }
-        border.color: control.style === 3
-                      ? (control.enabled ? Solar.Theme.colors.primary : Solar.Theme.colors.disabledText)
-                      : "transparent"
-        border.width: control.style === 3 ? 1 * Solar.Theme.zoom : 0
+        border.color: control.style === 3 ? (control.enabled ? Solar.Theme.colors.primary : Solar.Theme.colors.disabledText) : "transparent"
+        border.width: control.style === 3 ? Solar.Theme.border : 0
 
         Solar.FocusRectangle {
             visible: control.activeFocus
         }
     }
 
-    contentItem: RowLayout {
-        id: contentRow
-        spacing: (iconImage.visible && btnText.visible) ? control.spacing : 0
-        Solar.ColoredSvg {
-            id: iconImage
-            source: control.icon.source
-            height: 18 * Solar.Theme.zoom
-            width: 18 * Solar.Theme.zoom
-            color: control.icon.color
-            visible: control.display != AbstractButton.TextOnly && source.toString().length > 0
-        }
-        Text {
-            id: btnText
-            font: control.font
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            color: {
-                if (!control.enabled)
-                    return Solar.Theme.colors.disabledText;
-                if (control.style === 1)
-                    return control.contentHighlightTextColor;
-                return control.contentTextColor;
+    contentItem: Item {
+        implicitWidth: contentRow.implicitWidth
+        implicitHeight: contentRow.implicitHeight
+        RowLayout {
+            id: contentRow
+            anchors.centerIn: parent
+            spacing: (iconImage.visible && btnText.visible) ? control.spacing : 0
+            Solar.ColoredSvg {
+                id: iconImage
+                source: control.icon.source
+                height: 18 * Solar.Theme.zoom
+                width: 18 * Solar.Theme.zoom
+                color: control.icon.color
+                visible: control.display != AbstractButton.TextOnly && source.toString().length > 0
             }
-            text: control.text
-            visible: control.display != AbstractButton.IconOnly
+            Text {
+                id: btnText
+                font: control.font
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                color: {
+                    if (!control.enabled)
+                        return Solar.Theme.colors.disabledText;
+                    return control.contentTextColor;
+                }
+                text: control.text
+                visible: control.display != AbstractButton.IconOnly
+            }
         }
     }
 

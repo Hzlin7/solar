@@ -1,24 +1,31 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 import QtQuick.Effects
 import Solar as Solar
 
 Button {
     id: control
 
-    property color color: highlighted ? Solar.Theme.colors.primary : Solar.Theme.colors.fill0
-    property color hoveredColor: highlighted ? Solar.Theme.colors.primaryHover : Solar.Theme.colors.fill1
-    property color pressedColor: highlighted ? Solar.Theme.colors.primaryActive : Solar.Theme.colors.fill2
-    property color disabledColor: Solar.Theme.colors.disabledBg
-    property color textColor: Solar.Theme.colors.text0
-    property color highlightedTextColor: Solar.Theme.colors.white
+    enum Style {
+        Light,
+        Solid,
+        Transparent,
+        Outline
+    }
+
+    property int style: 0
+
+    property color bgNormal: Solar.Theme.colors.fill0
+    property color bgHovered: Solar.Theme.colors.fill1
+    property color bgPressed: Solar.Theme.colors.fill2
+    property color bgDisabled: Solar.Theme.colors.disabledBg
+    property color contentTextColor: Solar.Theme.colors.text0
+    property color contentIconColor: Solar.Theme.colors.text1
+    property bool animation: Solar.Theme.animation
+
     property real radius: Solar.Theme.radius
     property real minWidth: 60 * Solar.Theme.zoom
-    property alias tip: toolTip.text
-    property alias tipDelay: toolTip.delay
-    property bool animation: Solar.Theme.animation
 
     padding: 8 * Solar.Theme.zoom
     leftPadding: 10 * Solar.Theme.zoom
@@ -26,107 +33,107 @@ Button {
     font: Solar.Theme.font.body
     focusPolicy: Qt.TabFocus
 
-    QtObject {
-        id: d
-        property bool isAnimating: yOffsetAnim.running
+    icon.color: enabled ? contentIconColor : Solar.Theme.colors.disabledText
+
+    state: {
+        switch (style) {
+        case 1:
+            return "Solid";
+        case 2:
+            return "Transparent";
+        case 3:
+            return "Outline";
+        default:
+            return "";
+        }
     }
 
-    background: Rectangle {
-        id: bg
+    states: [
+        State {
+            name: "Solid"
+            PropertyChanges {
+                target: control
+                bgNormal: Solar.Theme.colors.primary
+                bgHovered: Solar.Theme.colors.primaryHover
+                bgPressed: Solar.Theme.colors.primaryActive
+                contentTextColor: Solar.Theme.colors.white
+                contentIconColor: Solar.Theme.colors.white
+            }
+        },
+        State {
+            name: "Transparent"
+            PropertyChanges {
+                target: control
+                bgNormal: "transparent"
+                bgDisabled: "transparent"
+            }
+        },
+        State {
+            name: "Outline"
+            PropertyChanges {
+                target: control
+                bgNormal: "transparent"
+                bgDisabled: "transparent"
+                contentTextColor: Solar.Theme.colors.primary
+                contentIconColor: Solar.Theme.colors.primary
+            }
+        }
+    ]
+
+    background: ShadowRectangle {
         implicitHeight: 30 * Solar.Theme.zoom
         implicitWidth: control.minWidth
         radius: control.radius
         color: {
             if (!control.enabled)
-                return control.disabledColor;
+                return control.bgDisabled;
             else if (control.pressed)
-                return control.pressedColor;
-            else if (hoverHandler.hovered || d.isAnimating)
-                return control.hoveredColor;
-            return control.color;
+                return control.bgPressed;
+            else if (control.hovered)
+                return control.bgHovered;
+            return control.bgNormal;
         }
+        shadowColor: Solar.Theme.isDark ? Qt.lighter(color, 1.1) : Qt.darker(color, 1.5)
+        border.color: control.style === 3 ? (control.enabled ? Solar.Theme.colors.primary : Solar.Theme.colors.disabledText) : "transparent"
+        border.width: control.style === 3 ? Solar.Theme.border : 0
 
         Solar.FocusRectangle {
             visible: control.activeFocus
         }
     }
 
-    Rectangle {
-        id: shadowWrap
-        y: parent.height - height / 2
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width * 0.8
-        height: 16
-        z: -2
-        color: bg.color
-        opacity: 0.6
-        visible: control.enabled
-
-        layer.enabled: true
-        layer.effect: MultiEffect {
-            blurEnabled: true
-            blurMax: 48
-            blur: 1.0
-        }
-    }
-
-    contentItem: RowLayout {
-        id: contentRow
-        spacing: (iconImage.visible && btnText.visible) ? control.spacing : 0
-        Solar.ColoredSvg {
-            id: iconImage
-            source: control.icon.source
-            height: 18 * Solar.Theme.zoom
-            width: 18 * Solar.Theme.zoom
-            color: control.icon.color
-            visible: control.display != AbstractButton.TextOnly && source.length > 0
-        }
-        Text {
-            id: btnText
-            font: control.font
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            color: {
-                if (!control.enabled)
-                    return Solar.Theme.colors.disabledText;
-                if (control.highlighted)
-                    return control.highlightedTextColor;
-                return control.textColor;
+    contentItem: Item {
+        implicitWidth: contentRow.implicitWidth
+        implicitHeight: contentRow.implicitHeight
+        RowLayout {
+            id: contentRow
+            anchors.centerIn: parent
+            spacing: (iconImage.visible && btnText.visible) ? control.spacing : 0
+            Solar.ColoredSvg {
+                id: iconImage
+                source: control.icon.source
+                height: 18 * Solar.Theme.zoom
+                width: 18 * Solar.Theme.zoom
+                color: control.icon.color
+                visible: control.display != AbstractButton.TextOnly && source.toString().length > 0
             }
-            text: control.text
-            visible: control.display != AbstractButton.IconOnly
+            Text {
+                id: btnText
+                font: control.font
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                color: {
+                    if (!control.enabled)
+                        return Solar.Theme.colors.disabledText;
+                    return control.contentTextColor;
+                }
+                text: control.text
+                visible: control.display != AbstractButton.IconOnly
+            }
         }
-    }
-
-    // replace with Solar.ToolTip when it's implemented
-    ToolTip {
-        id: toolTip
     }
 
     Solar.HoverHandler {
-            id: hoverHandler
-            enabled: control.enabled
-            onHoveredChanged: {
-                if (!control.floating)
-                    return;
-                if (hovered) {
-                    contentTranslate.y = -5;
-                } else {
-                    contentTranslate.y = 0;
-                }
-            }
-        }
-
-    transform: Translate {
-        id: contentTranslate
-        y: 0
-        Behavior on y {
-            enabled: control.animation
-            PropertyAnimation {
-                id: yOffsetAnim
-                duration: 160
-                easing.type: Easing.InOutQuad
-            }
-        }
+        id: hoverHandler
     }
 }

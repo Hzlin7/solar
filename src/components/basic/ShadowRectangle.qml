@@ -13,8 +13,6 @@ Rectangle {
     property color shadowColor: Solar.Theme.colors.shadow
 
     color: Solar.Theme.colors.white
-    border.width: shadow ? 0.5 : 1
-    border.color: Solar.Theme.colors.border
 
     layer.enabled: control.shadow
     layer.effect: MultiEffect {
