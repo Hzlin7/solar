@@ -19,20 +19,26 @@ Button {
         anchors.fill: parent
         radius: Solar.Theme.radius
         color: {
-            if (control.down) {
-                return control.pressedColor
-            } else if (control.hovered) {
-                return control.hoveredColor
-            } else {
-                return "transparent"
+            if (control.enabled) {
+                if (control.down) {
+                    return control.pressedColor;
+                } else if (control.hovered) {
+                    return control.hoveredColor;
+                }
             }
+            return "transparent";
         }
     }
 
-    contentItem: Solar.FontIcon {
-        name: control.icon.name
-        size: 18 * Solar.Theme.zoom
-        color: control.icon.color
+    contentItem: Item {
+        Solar.ColoredSvg {
+            id: iconImage
+            anchors.centerIn: parent
+            source: control.icon.source
+            height: 18 * Solar.Theme.zoom
+            width: 18 * Solar.Theme.zoom
+            color: control.icon.color
+        }
     }
 
     //@todo: replace with Solar.ToolTip when it's implemented

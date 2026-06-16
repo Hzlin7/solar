@@ -120,13 +120,13 @@ ApplicationWindow {
                     }
                 }
 
-                Solar.IconButton {
+                Solar.FontIconButton {
                     icon.name: "minus"
                     tip: "Minimize"
                     onClicked: window.showMinimized()
                 }
 
-                Solar.IconButton {
+                Solar.FontIconButton {
                     id: maximizeButton
                     icon.name: window.visibility === Window.Maximized ? "fullscreen-exit" : "fullscreen"
                     tip: window.visibility === Window.Maximized ? "Restore" : "Maximize"
@@ -139,7 +139,7 @@ ApplicationWindow {
                     }
                 }
 
-                Solar.IconButton {
+                Solar.FontIconButton {
                     icon.name: "close"
                     tip: "Close"
                     onClicked: Qt.quit()

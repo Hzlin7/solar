@@ -12,10 +12,6 @@ Rectangle {
     property int offsetX: 0
     property color shadowColor: Solar.Theme.colors.shadow
 
-    Component.onCompleted: {
-        console.log("shadowColor: " + shadowColor)
-    }
-
     color: Solar.Theme.colors.white
     border.width: shadow ? 0.5 : 1
     border.color: Solar.Theme.colors.border

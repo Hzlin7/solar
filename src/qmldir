@@ -12,6 +12,8 @@ HoverHandler 1.0 components/basic/HoverHandler.qml
 FontIcon 1.0 components/basic/FontIcon.qml
 Button 1.0 components/basic/Button.qml
 IconButton 1.0 components/basic/IconButton.qml
+FontIconButton 1.0 components/basic/FontIconButton.qml
+FloatingButton 1.0 components/basic/FloatingButton.qml
 ShadowRectangle 1.0 components/basic/ShadowRectangle.qml
 ShapeRectangle 1.0 components/basic/ShapeRectangle.qml
 SegmentedItem 1.0 components/input/SegmentedItem.qml
@@ -23,3 +25,4 @@ Segmented 1.0 components/input/Segmented.qml
 
 # Display components
 Card 1.0 components/display/Card.qml
+ToolTip 1.0 components/display/ToolTip.qml

@@ -10,6 +10,8 @@ qt6_add_qml_module(Solar
         components/basic/Separator.qml
         components/basic/Button.qml
         components/basic/IconButton.qml
+        components/basic/FontIconButton.qml
+        components/basic/FloatingButton.qml
         components/basic/ShadowRectangle.qml
         components/basic/FontIcon.qml
         components/basic/FocusRectangle.qml
@@ -20,6 +22,7 @@ qt6_add_qml_module(Solar
         components/input/ToggleSwitch.qml
         components/input/Segmented.qml
         components/display/Card.qml
+        components/display/ToolTip.qml
     RESOURCES
         assets/iconfont.ttf
 )
