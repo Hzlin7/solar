@@ -19,8 +19,8 @@ T.ToolTip {
                              contentHeight + topPadding + bottomPadding)
     margins: 0
     padding: 10 * Solar.Theme.zoom
-    topPadding: 5 * Solar.Theme.zoom
-    bottomPadding: 5 * Solar.Theme.zoom
+    topPadding: 8 * Solar.Theme.zoom
+    bottomPadding: 8 * Solar.Theme.zoom
     visible: text.length > 0 && parent.hovered && parent.enabled
              && !parent.pressed
     delay: 1000
@@ -33,8 +33,8 @@ T.ToolTip {
         id: d
 
         property real toolTipX: root.parent ? (root.parent.width - root.implicitWidth) / 2 : 0
-        property real indicatorWidth: 8 * Solar.Theme.zoom
-        property real indicatorHeight: 4.8 * Solar.Theme.zoom
+        property real indicatorWidth: 14 * Solar.Theme.zoom
+        property real indicatorHeight: 8 * Solar.Theme.zoom
         property real indicatorX: {
             if (toolTipX < root.x - 0.01) {
                 return root.parent ? (root.parent.width - indicatorWidth) / 2 : 0
@@ -78,7 +78,7 @@ T.ToolTip {
         topPadding: d.indicatorTop ? d.indicatorHeight : 0
         bottomPadding: d.indicatorTop ? 0 : d.indicatorHeight
         text: root.text
-        color: Solar.Theme.colors.text0
+        color: Solar.Theme.colors.white
         font: root.font
         elide: Text.ElideRight
         verticalAlignment: Text.AlignVCenter
@@ -86,29 +86,31 @@ T.ToolTip {
     background: Canvas {
         id: canvas
 
-        property color fillColor: Solar.Theme.colors.fill0
-        property color borderColor: fillColor.darker(1.1)
+        property color fillColor: Solar.Theme.colors.overlayBg
 
         onPaint: {
             var ctx = getContext("2d")
             var ix = d.indicatorX
             var ih = d.indicatorHeight
             var iw = d.indicatorWidth
-            var r = Solar.Theme.size.radius
-            var rx = x + 1
-            var ry = d.indicatorTop ? (y + 1 + ih) : (y + 1)
-            var rh = height - 2 - ih
-            var rw = width - 2
+            var r = Solar.Theme.radius
+            var ri = Math.min(r, iw / 4, ih)
+            var rx = x
+            var ry = d.indicatorTop ? (y + ih) : y
+            var rh = height - ih
+            var rw = width
             ctx.reset()
             ctx.fillStyle = canvas.fillColor
             ctx.lineWidth = 1
             ctx.lineCap = "round"
-            ctx.strokeStyle = canvas.borderColor
             ctx.beginPath()
             ctx.moveTo(rx + r, ry)
             if (d.indicatorTop) {
                 ctx.lineTo(ix, ry)
-                ctx.lineTo(ix + iw / 2, y + 1)
+                if (r > 0)
+                    ctx.arcTo(ix + iw / 2, y, ix + iw, ry, ri)
+                else
+                    ctx.lineTo(ix + iw / 2, y)
                 ctx.lineTo(ix + iw, ry)
             }
             ctx.lineTo(rx + rw - r, ry)
@@ -117,7 +119,10 @@ T.ToolTip {
             ctx.arcTo(rx + rw, ry + rh, rx + rw - r, ry + rh, r)
             if (!d.indicatorTop) {
                 ctx.lineTo(ix + iw, ry + rh)
-                ctx.lineTo(ix + iw / 2, y + height - 2)
+                if (r > 0)
+                    ctx.arcTo(ix + iw / 2, y + height, ix, ry + rh, ri)
+                else
+                    ctx.lineTo(ix + iw / 2, y + height)
                 ctx.lineTo(ix, ry + rh)
             }
             ctx.lineTo(rx + r, ry + rh)
@@ -125,7 +130,6 @@ T.ToolTip {
             ctx.lineTo(rx, ry + r)
             ctx.arcTo(rx, ry, rx + r, ry, r)
             ctx.closePath()
-            ctx.stroke()
             ctx.fill()
         }
     }

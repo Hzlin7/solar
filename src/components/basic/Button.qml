@@ -25,8 +25,6 @@ Button {
 
     property real radius: Solar.Theme.radius
     property real minWidth: 60 * Solar.Theme.zoom
-    property alias tip: toolTip.text
-    property alias tipDelay: toolTip.delay
 
     padding: 8 * Solar.Theme.zoom
     leftPadding: 10 * Solar.Theme.zoom
@@ -129,10 +127,6 @@ Button {
             text: control.text
             visible: control.display != AbstractButton.IconOnly
         }
-    }
-
-    Solar.ToolTip {
-        id: toolTip
     }
 
     Solar.HoverHandler {
