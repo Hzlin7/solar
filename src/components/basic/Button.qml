@@ -13,7 +13,7 @@ Button {
         Outline
     }
 
-    property int style: 0 // Button.Style.Light
+    property int style: 0
 
     property color bgNormal: Solar.Theme.colors.fill0
     property color bgHovered: Solar.Theme.colors.fill1
@@ -26,8 +26,8 @@ Button {
     property real minWidth: 60 * Solar.Theme.zoom
 
     padding: 8 * Solar.Theme.zoom
-    leftPadding: 10 * Solar.Theme.zoom
-    rightPadding: 10 * Solar.Theme.zoom
+    leftPadding: 12 * Solar.Theme.zoom
+    rightPadding: 12 * Solar.Theme.zoom
     font: Solar.Theme.font.body
     focusPolicy: Qt.TabFocus
 

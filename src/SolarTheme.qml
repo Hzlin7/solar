@@ -50,9 +50,9 @@ QtObject {
         "text1": "#494c4f",
         "text2": "#77797b",
         "text3": "#b0b1b2",
-        "fill0": "#2e3138,5%",
-        "fill1": "#2e3138,9%",
-        "fill2": "#2e3138,13%",
+        "fill0": "#f3f3f4",
+        "fill1": "#eaeaeb",
+        "fill2": "#e1e1e2",
         "bg0": "#fff",
         "bg1": "#fff",
         "bg2": "#fff",
@@ -62,7 +62,7 @@ QtObject {
         "linkActive": "#004fb3",
         "linkHover": "#0062d6",
         "linkVisited": "#1a5cff",
-        "navBg": "#f5f7fa",
+        "navBg": "#eaeaeb",
         "black": "#000",
         "data0": "#5769ff",
         "data1": "#8ed4e7",
@@ -141,9 +141,9 @@ QtObject {
         "text1": "#cbcbcc",
         "text2": "#9e9e9f",
         "text3": "#656568",
-        "fill0": "#fff,5%",
-        "fill1": "#fff,9%",
-        "fill2": "#fff,13%",
+        "fill0": "#2e2f34",
+        "fill1": "#373948",
+        "fill2": "#3f4044",
         "bg0": "#1b1b1e",
         "bg1": "#232429",
         "bg2": "#35363c",
@@ -353,7 +353,7 @@ QtObject {
 
     // Size
     property real zoom: 1.0
-    property real border: 1.5 * zoom
+    property real border: 1.0 * zoom
     property real radius: isRounded ? 4 * zoom : 0
 
     property QtObject font: QtObject {

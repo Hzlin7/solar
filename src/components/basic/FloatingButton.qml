@@ -28,8 +28,8 @@ Button {
     property real minWidth: 60 * Solar.Theme.zoom
 
     padding: 8 * Solar.Theme.zoom
-    leftPadding: 10 * Solar.Theme.zoom
-    rightPadding: 10 * Solar.Theme.zoom
+    leftPadding: 12 * Solar.Theme.zoom
+    rightPadding: 12 * Solar.Theme.zoom
     font: Solar.Theme.font.body
     focusPolicy: Qt.TabFocus
 
@@ -93,7 +93,7 @@ Button {
                 return control.bgHovered;
             return control.bgNormal;
         }
-        shadowColor: Solar.Theme.isDark ? Qt.lighter(color, 1.1) : Qt.darker(color, 1.5)
+        blur: 16
         border.color: control.style === 3 ? (control.enabled ? Solar.Theme.colors.primary : Solar.Theme.colors.disabledText) : "transparent"
         border.width: control.style === 3 ? Solar.Theme.border : 0
 

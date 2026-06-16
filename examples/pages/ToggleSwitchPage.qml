@@ -28,7 +28,7 @@ Flickable {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 10 * Solar.Theme.zoom
+                anchors.margins: 20 * Solar.Theme.zoom
                 Row {
                     spacing: 20 * Solar.Theme.zoom
                     Layout.alignment: Qt.AlignVCenter
@@ -82,7 +82,7 @@ Flickable {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 10 * Solar.Theme.zoom
+                anchors.margins: 20 * Solar.Theme.zoom
                 Row {
                     spacing: 20 * Solar.Theme.zoom
                     Layout.alignment: Qt.AlignVCenter
@@ -134,7 +134,7 @@ Flickable {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 10 * Solar.Theme.zoom
+                anchors.margins: 20 * Solar.Theme.zoom
                 Row {
                     spacing: 20 * Solar.Theme.zoom
                     Layout.alignment: Qt.AlignVCenter

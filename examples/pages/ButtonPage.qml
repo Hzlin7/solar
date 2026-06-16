@@ -28,7 +28,7 @@ Flickable {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 10 * Solar.Theme.zoom
+                anchors.margins: 20 * Solar.Theme.zoom
                 Row {
                     spacing: 20 * Solar.Theme.zoom
                     Layout.alignment: Qt.AlignVCenter
@@ -90,7 +90,7 @@ Flickable {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 10 * Solar.Theme.zoom
+                anchors.margins: 20 * Solar.Theme.zoom
                 Row {
                     spacing: 20 * Solar.Theme.zoom
                     Layout.alignment: Qt.AlignVCenter
@@ -157,19 +157,29 @@ Flickable {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 10 * Solar.Theme.zoom
+                anchors.margins: 20 * Solar.Theme.zoom
                 Row {
                     spacing: 20 * Solar.Theme.zoom
                     Layout.alignment: Qt.AlignVCenter
                     Layout.fillWidth: true
 
                     Solar.FloatingButton {
-                        text: qsTr("Normal")
+                        radius: height / 2
+                        leftPadding: padding
+                        rightPadding: padding
+                        minWidth: height
+                        display: AbstractButton.IconOnly
+                        icon.source: Qt.resolvedUrl("../resources/image/sun.svg")
                         enabled: !disabledSwitch3.checked
                     }
 
                     Solar.FloatingButton {
-                        text: qsTr("Solid")
+                        radius: height / 2
+                        leftPadding: padding
+                        rightPadding: padding
+                        minWidth: height
+                        display: AbstractButton.IconOnly
+                        icon.source: Qt.resolvedUrl("../resources/image/sun.svg")
                         style: Solar.Button.Style.Solid
                         enabled: !disabledSwitch3.checked
                     }
@@ -211,7 +221,7 @@ Flickable {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 10 * Solar.Theme.zoom
+                anchors.margins: 20 * Solar.Theme.zoom
                 Row {
                     spacing: 20 * Solar.Theme.zoom
                     Layout.alignment: Qt.AlignVCenter
